@@ -3,8 +3,21 @@
 .global main
 .type main, %function
 main:
-    // TODO: replace this branch with your implementation.
-    b not_implemented
+
+    stp x29, x30, [sp, #-16]!
+    mov x29, sp
+
+    ldr x0, =demo_array
+    ldr x1, =demo_length
+    ldr x1, [x1]
+    ldr x2, =demo_results
+
+    bl analyze_array
+
+    mov x0, #0
+    ldp x29, x30, [sp], #16
+    ret
+
 .size main, .-main
 .section .note.GNU-stack,"",@progbits
 
